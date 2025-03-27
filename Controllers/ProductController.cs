@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eBookShop.Controllers
 {
-    [Authorize(Roles = "Admin,User")]
     [Route("api/products")] 
     [ApiController]
     public class ProductController : ControllerBase
@@ -36,7 +35,6 @@ namespace eBookShop.Controllers
             return Ok(new { message = "Product added successfully" });
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetProductById(int id)
         {

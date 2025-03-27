@@ -29,7 +29,7 @@ namespace eBookShop.Services.BALServices
         {
             
             var imagePath = await saveImageAsync(data.ProductImage);
-            var pdfPath = await savePdfAsync(data.ProductImage);
+            var pdfPath = await savePdfAsync(data.ProductPdf);
             var d = new ProductModel()
             {
                 Title = data.Title,
