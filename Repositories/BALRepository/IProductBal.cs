@@ -1,4 +1,5 @@
-﻿using eBookShop.Model;
+﻿using eBookShop.DTOs;
+using eBookShop.Model;
 
 namespace eBookShop.Repositories.BALRepository
 {
@@ -6,8 +7,13 @@ namespace eBookShop.Repositories.BALRepository
     {
         Task<IEnumerable<ProductModel>> GetProductAsync();
         Task<ProductModel> GetProductById(int Id);
-        Task UpdateProductAsync(ProductModel data);
-        Task AddProductAsync(ProductModel data);
+        Task UpdateProductAsync(ProductDto data);
+        Task AddProductAsync(ProductDto data);
         Task DeleteProduct(int Id);
+    }
+    public interface IProcessOnImage
+    {
+        Task<string> saveImageAsync(IFormFile productImage);
+        Task<string> savePdfAsync(IFormFile productPdf );
     }
 }
