@@ -66,4 +66,54 @@ namespace eBookShop.Model
 
         public virtual ICollection<ProductModel>? Products { get; set; }
     }
+    public class OrderModel
+    {
+        [Key]
+        public int Id { get; set; }  
+
+        [Required]
+        public int UserId { get; set; } 
+
+        [Required]
+        public decimal TotalAmount { get; set; }  
+
+        [Required]
+        public string PaymentStatus { get; set; } = "Pending";  
+
+        [Required]
+        public string OrderStatus { get; set; } = "Processing";  
+
+        [Required]
+        public DateTime OrderDate { get; set; } = DateTime.UtcNow; 
+
+        public DateTime? DeliveredOn { get; set; } 
+
+        [Required]
+        public string ShippingAddress { get; set; }  
+
+        public string? TransactionId { get; set; } 
+
+        public List<OrderItemModel> OrderItems { get; set; } = new List<OrderItemModel>();  
+    }
+    public class OrderItemModel
+    {
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        public int OrderId { get; set; } 
+
+        [Required]
+        public int ProductId { get; set; }
+
+        [Required]
+        public int Quantity { get; set; } 
+
+        [Required]
+        public decimal Price { get; set; } 
+
+        public OrderModel Order { get; set; } 
+        public ProductModel Product { get; set; }  
+    }
+
 }

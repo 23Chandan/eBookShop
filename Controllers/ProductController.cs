@@ -68,5 +68,11 @@ namespace eBookShop.Controllers
             await _productBal.UpdateProductAsync(data);
             return Ok(new { message = "Product updated successfully" });
         }
+        [Authorize]
+        [HttpPost("orderProduct")]
+        public async Task<IActionResult> OrderProduct()
+        {
+            return Ok();
+        }
     }
 }
