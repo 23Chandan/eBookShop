@@ -1,5 +1,6 @@
 ﻿using eBookShop.Data;
 using eBookShop.Model;
+using eBookShop.Repositories.BALRepository;
 using eBookShop.Repositories.DALRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace eBookShop.Services.DALServices
 {
-    public class ProductServices : IProduct
+    public class ProductServices : IProduct, ICategory
     {
         private readonly ApplicationDbContext _dbContext;
 
@@ -30,7 +31,7 @@ namespace eBookShop.Services.DALServices
                 _dbContext.Product.Remove(product);
                 await _dbContext.SaveChangesAsync();
             }
-        }
+        }        
 
         public async Task<IEnumerable<ProductModel>> GetProductAsync()
         {
@@ -61,6 +62,10 @@ namespace eBookShop.Services.DALServices
                 _dbContext.Product.Update(existingProduct);
                 await _dbContext.SaveChangesAsync();
             }
+        }
+        public async Task<IEnumerable<CategoryModel>> GetCategoryAsync()
+        {
+            return await _dbContext.Category.ToArrayAsync();
         }
     }
 }

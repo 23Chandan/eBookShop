@@ -16,7 +16,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container
 builder.Services.AddControllers();
 builder.Services.AddScoped<IProductBal, ProductBalServices>();
+builder.Services.AddScoped<ICategoryBal, ProductBalServices>();
 builder.Services.AddScoped<IProduct,ProductServices >();
+builder.Services.AddScoped<ICategory,ProductServices >();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("EBookDb")));
 

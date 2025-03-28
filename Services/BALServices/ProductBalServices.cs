@@ -6,14 +6,16 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace eBookShop.Services.BALServices
 {
-    public class ProductBalServices : IProductBal, IProcessOnImage
+    public class ProductBalServices : IProductBal, IProcessOnImage,ICategoryBal
     {
         private readonly IProduct _product;
+        private readonly ICategory _category;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public ProductBalServices(IProduct product, IHttpContextAccessor httpContextAccessor)
+        public ProductBalServices(IProduct product, IHttpContextAccessor httpContextAccessor,ICategory categoryBal)
         {
             _product = product;
             _httpContextAccessor = httpContextAccessor;
+            _category = categoryBal;
         }
         private string GetBaseUrl()
         {
@@ -118,5 +120,9 @@ namespace eBookShop.Services.BALServices
             return $"{baseUrl}/ProductPdf/{pdfName}";
         }
 
+        public async Task<IEnumerable<CategoryModel>> GetCategoryAsync()
+        {
+            return await _category.GetCategoryAsync();
+        }
     }
 }
