@@ -7,36 +7,35 @@ namespace eBookShop.Model
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Title is required.")]
-        [StringLength(200, ErrorMessage = "Title length can't be more than 200 characters.")]
+        [Required]
+        [StringLength(200)]
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "Author is required.")]
-        [StringLength(100, ErrorMessage = "Author name can't be more than 100 characters.")]
+        [Required]
+        [StringLength(100)]
         public string Author { get; set; }
 
-        [Required(ErrorMessage = "Price is required.")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than zero.")]
+        [Required]
+        [Range(0.01, double.MaxValue)]
         public decimal Price { get; set; }
 
-        [Required(ErrorMessage = "Category is required.")]
-        [StringLength(50, ErrorMessage = "Category name can't be more than 50 characters.")]
+        [Required]
+        [StringLength(50)]
         public string Category { get; set; }  
 
-        [StringLength(500, ErrorMessage = "Description length can't be more than 500 characters.")]
+        [StringLength(500)]
         public string Description { get; set; }
 
 
-        [Required(ErrorMessage = "Language is required.")]
-        [StringLength(50, ErrorMessage = "Language name can't be more than 50 characters.")]
+        [Required]
         public string Language { get; set; }
 
-        [Required(ErrorMessage = "Stock quantity is required.")]
-        [Range(0, int.MaxValue, ErrorMessage = "Stock quantity must be non-negative.")]
+        [Required]
+        [Range(0, int.MaxValue)]
         public int StockQuantity { get; set; }
 
-        [Required(ErrorMessage = "Page count is required.")]
-        [Range(1, int.MaxValue, ErrorMessage = "Page count must be greater than zero.")]
+        [Required]
+        [Range(1, int.MaxValue)]
         public int PageCount { get; set; }
 
         public string? ImageUrl { get; set; }  
@@ -46,6 +45,7 @@ namespace eBookShop.Model
         public bool IsBestSeller { get; set; } = false;
 
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedOn { get; set; } 
 
     }
     public class CategoryModel
@@ -66,4 +66,54 @@ namespace eBookShop.Model
 
         public virtual ICollection<ProductModel>? Products { get; set; }
     }
+    public class OrderModel
+    {
+        [Key]
+        public int Id { get; set; }  
+
+        [Required]
+        public int UserId { get; set; } 
+
+        [Required]
+        public decimal TotalAmount { get; set; }  
+
+        [Required]
+        public string PaymentStatus { get; set; } = "Pending";  
+
+        [Required]
+        public string OrderStatus { get; set; } = "Processing";  
+
+        [Required]
+        public DateTime OrderDate { get; set; } = DateTime.UtcNow; 
+
+        public DateTime? DeliveredOn { get; set; } 
+
+        [Required]
+        public string ShippingAddress { get; set; }  
+
+        public string? TransactionId { get; set; } 
+
+        public List<OrderItemModel> OrderItems { get; set; } = new List<OrderItemModel>();  
+    }
+    public class OrderItemModel
+    {
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        public int OrderId { get; set; } 
+
+        [Required]
+        public int ProductId { get; set; }
+
+        [Required]
+        public int Quantity { get; set; } 
+
+        [Required]
+        public decimal Price { get; set; } 
+
+        public OrderModel Order { get; set; } 
+        public ProductModel Product { get; set; }  
+    }
+
 }

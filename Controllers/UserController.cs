@@ -66,14 +66,17 @@ namespace eBookShop.Controllers
             if (user == null)
             {
                 return Unauthorized(new { message = "Invalid email or password" });
-            }
-
+            }            
             var result = await _sigInManager.PasswordSignInAsync(user.UserName, data.Password, false, false);
             if (result.Succeeded)
             {
                 var roles = await _userManager.GetRolesAsync(user);
-                var userRole = roles.FirstOrDefault() ?? "User"; 
+                var userRole = roles.FirstOrDefault();
 
+                if (userRole == null || !roles.Contains(data.Role))
+                {
+                    return Unauthorized(new { message = "Invalid Role." });
+                }
                 var token = _tokenGenerate.GenerateJSONWebToken(user.Id, user.Email, userRole);
 
                 return Ok(new
@@ -88,7 +91,7 @@ namespace eBookShop.Controllers
                 });
             }
 
-            return Unauthorized(new { message = "Invalid login attempt" });
+            return Unauthorized(new { message = "Invalid email or password" });
         }
 
 
@@ -111,7 +114,7 @@ namespace eBookShop.Controllers
             return BadRequest();
         }
         [HttpPost("logout")]
-        [Authorize(Roles ="Admin")]
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await _sigInManager.SignOutAsync();

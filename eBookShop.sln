@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eBookShop", "eBookShop.csproj", "{6136E21B-718E-46F3-A535-F0B73C8AA711}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eBookShop", "eBookShop.csproj", "{6136E21B-718E-46F3-A535-F0B73C8AA711}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eBookShopWeb", "..\eBookShopWeb\eBookShopWeb.csproj", "{9BF2CD5F-5E86-4603-BCAF-3118EBA55E92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6136E21B-718E-46F3-A535-F0B73C8AA711}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6136E21B-718E-46F3-A535-F0B73C8AA711}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6136E21B-718E-46F3-A535-F0B73C8AA711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BF2CD5F-5E86-4603-BCAF-3118EBA55E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BF2CD5F-5E86-4603-BCAF-3118EBA55E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BF2CD5F-5E86-4603-BCAF-3118EBA55E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BF2CD5F-5E86-4603-BCAF-3118EBA55E92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
