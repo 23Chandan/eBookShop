@@ -16,4 +16,8 @@ namespace eBookShop.Repositories.BALRepository
         Task<string> saveImageAsync(IFormFile productImage);
         Task<string> savePdfAsync(IFormFile productPdf );
     }
+    public interface ICategoryBal
+    {
+        Task<IEnumerable<CategoryModel>> GetCategoryAsync();
+    }
 }

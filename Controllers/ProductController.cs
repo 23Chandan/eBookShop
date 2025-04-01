@@ -12,9 +12,11 @@ namespace eBookShop.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductBal _productBal;
-        public ProductController(IProductBal productBal)
+        private readonly ICategoryBal _categoryBal;
+        public ProductController(IProductBal productBal, ICategoryBal categoryBal)
         {
             _productBal = productBal;
+            _categoryBal = categoryBal;
         }
 
         [Authorize(Roles = "Admin")]
@@ -73,6 +75,13 @@ namespace eBookShop.Controllers
         public async Task<IActionResult> OrderProduct()
         {
             return Ok();
+        }
+        [Authorize]
+        [HttpPost("category")]
+        public async Task<IActionResult> GetCateogry()
+        {
+            var d = await _categoryBal.GetCategoryAsync();
+            return Ok(d);
         }
     }
 }

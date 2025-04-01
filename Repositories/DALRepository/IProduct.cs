@@ -10,4 +10,8 @@ namespace eBookShop.Repositories.DALRepository
         Task AddProductAsync(ProductModel data);
         Task DeleteProduct(int Id);
     }
+    public interface ICategory
+    {
+        Task<IEnumerable<CategoryModel>> GetCategoryAsync();
+    }
 }
